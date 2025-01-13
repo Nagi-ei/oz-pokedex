@@ -20,3 +20,6 @@ export const favoriteSlice = createSlice({
       state.filter((i) => action.payload.id !== i),
   },
 });
+
+// Thunk로 fetch하기?
+// 파일이름 수정 poke만 아니고 fav도 있어서

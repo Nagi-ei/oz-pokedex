@@ -6,8 +6,6 @@ export default function FavBtn({ id }) {
   const fav = useSelector((state) => state.favorite);
   const dispatch = useDispatch();
 
-  // console.log(favoriteSlice.actions.addPokemon);
-
   return (
     <>
       {fav.includes(id) ? (

@@ -16,7 +16,7 @@ export default function Detail() {
     <div>
       <div>
         <h2>{name}</h2>
-        <FavBtn id={id} />
+        <FavBtn id={parseInt(id)} />
       </div>
       <p>{content}</p>
       {isFront ? (
