@@ -1,7 +1,9 @@
+import { Link, Route, Routes } from 'react-router';
 import './App.css';
 import Detail from './pages/Detail';
 import Main from './pages/Main';
 import Search from './pages/Search';
+import Favorite from './pages/Favorite';
 
 function App() {
   return (
@@ -9,16 +11,23 @@ function App() {
       <h1>포켓몬 도감</h1>
       <nav>
         <ul>
-          <li>메인페이지</li>
-          <li>찜목록</li>
+          <li>
+            <Link to='/'>메인페이지</Link>
+          </li>
+          <li>
+            <Link to='/favorite'>찜목록</Link>
+          </li>
           <li>
             <Search />
           </li>
         </ul>
       </nav>
       <main>
-        <Main />
-        <Detail id={120} />
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/detail/:id' element={<Detail />} />
+          <Route path='/favorite' element={<Favorite />} />
+        </Routes>
       </main>
     </>
   );

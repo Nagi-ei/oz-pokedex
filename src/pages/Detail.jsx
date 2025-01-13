@@ -1,8 +1,10 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
 import { useState } from 'react';
+import { useParams } from 'react-router';
 
-export default function Detail({ id }) {
+export default function Detail() {
+  const { id } = useParams();
   const { name, content } = useFetch(id);
   const [isFront, setIsFront] = useState(true);
 
