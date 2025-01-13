@@ -1,5 +1,5 @@
 import './App.css';
-import Card from './components/Card';
+import Detail from './pages/Detail';
 import Main from './pages/Main';
 import Search from './pages/Search';
 
@@ -16,7 +16,10 @@ function App() {
           </li>
         </ul>
       </nav>
-      <Main />
+      <main>
+        <Main />
+        <Detail id={120} />
+      </main>
     </>
   );
 }

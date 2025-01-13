@@ -2,7 +2,7 @@
 import useFetch from '../hooks/useFetch';
 
 export default function Card({ id }) {
-  const { name, content } = useFetch(id);
+  const { name } = useFetch(id);
   return (
     <li>
       <img
@@ -12,7 +12,6 @@ export default function Card({ id }) {
       <div>
         <span>{name}</span>
         <button>🩶⭐️</button>
-        {/* <p>{content}</p> */}
       </div>
     </li>
   );
