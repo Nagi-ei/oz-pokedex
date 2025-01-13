@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 export default function Main() {
   const pokeIndex = useSelector((state) => state.pokedex);
-  console.log(pokeIndex);
 
   return (
     <ul>

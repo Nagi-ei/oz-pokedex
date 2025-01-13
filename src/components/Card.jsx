@@ -1,10 +1,16 @@
 // import React from 'react';
-import { useNavigate } from 'react-router';
 import useFetch from '../hooks/useFetch';
+import { useNavigate } from 'react-router';
+import { favoriteSlice } from '../RTK/pokeSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import FavBtn from './FavBtn';
 
 export default function Card({ id }) {
   const { name } = useFetch(id);
   const navigate = useNavigate();
+
+  const fav = useSelector((state) => state.favorite);
+  const dispatch = useDispatch();
 
   return (
     <li onClick={() => navigate(`/detail/${id}`)}>
@@ -14,7 +20,7 @@ export default function Card({ id }) {
       />
       <div>
         <span>{name}</span>
-        <button>🩶⭐️</button>
+        <FavBtn id={id} />
       </div>
     </li>
   );

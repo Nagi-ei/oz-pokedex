@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useFetch from '../hooks/useFetch';
-import { useState } from 'react';
 import { useParams } from 'react-router';
+import FavBtn from '../components/FavBtn';
 
 export default function Detail() {
   const { id } = useParams();
@@ -16,7 +16,7 @@ export default function Detail() {
     <div>
       <div>
         <h2>{name}</h2>
-        <button>🩶⭐️</button>
+        <FavBtn id={id} />
       </div>
       <p>{content}</p>
       {isFront ? (
