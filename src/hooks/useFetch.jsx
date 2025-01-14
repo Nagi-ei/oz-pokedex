@@ -20,7 +20,15 @@ export default function useFetch(id) {
             .flavor_text
         );
         // console.log(jsoned);
+        // console.log(jsoned);
       });
+
+    // fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+    //   .then((res) => res.json())
+    //   .then((jsoned) => {
+    //     console.log(jsoned);
+    //     console.log(jsoned.types[1].type.name);
+    //   });
   }, [id]);
 
   return { name, content };

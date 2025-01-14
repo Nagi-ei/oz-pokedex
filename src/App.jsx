@@ -1,14 +1,27 @@
+import { useEffect, useRef } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router';
-import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPokedex } from './RTK/thunk';
 import Detail from './pages/Detail';
 import Main from './pages/Main';
 import Search from './pages/Search';
 import Favorite from './pages/Favorite';
-import { useRef } from 'react';
+import './App.css';
+
+// const TOTAL_INDEX_NUMBER = 251;
+const TOTAL_INDEX_NUMBER = 25;
 
 function App() {
   const inputRef = useRef('');
   const navigate = useNavigate();
+
+  const pokedex = useSelector((state) => state.pokedex);
+  const dispatch = useDispatch();
+  console.log(pokedex.data);
+
+  useEffect(() => {
+    dispatch(fetchPokedex(TOTAL_INDEX_NUMBER));
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();

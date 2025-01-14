@@ -1,26 +1,16 @@
 // import React from 'react';
-import useFetch from '../hooks/useFetch';
 import { useNavigate } from 'react-router';
-import { favoriteSlice } from '../RTK/pokeSlice';
-import { useSelector, useDispatch } from 'react-redux';
 import FavBtn from './FavBtn';
 
-export default function Card({ id }) {
-  const { name } = useFetch(id);
+export default function Card({ pokemon }) {
   const navigate = useNavigate();
 
-  const fav = useSelector((state) => state.favorite);
-  const dispatch = useDispatch();
-
   return (
-    <li onClick={() => navigate(`/detail/${id}`)}>
-      <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-        alt=''
-      />
+    <li onClick={() => navigate(`/detail/${pokemon.index}`)}>
+      <img src={pokemon.front} alt={`pokedex-id: ${pokemon.index}`} />
       <div>
-        <span>{name}</span>
-        <FavBtn id={id} />
+        <span>{pokemon.name}</span>
+        <FavBtn id={pokemon.index} />
       </div>
     </li>
   );

@@ -1,18 +1,18 @@
 import React from 'react';
-import { favoriteSlice } from '../RTK/pokeSlice';
+import { favoriteSlice } from '../RTK/slice';
 import { useSelector, useDispatch } from 'react-redux';
 
-export default function FavBtn({ id }) {
+export default function FavBtn({ index }) {
   const fav = useSelector((state) => state.favorite);
   const dispatch = useDispatch();
 
   return (
     <>
-      {fav.includes(id) ? (
+      {fav.includes(index) ? (
         <button
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(favoriteSlice.actions.deletePokemon({ id }));
+            dispatch(favoriteSlice.actions.deletePokemon({ index }));
           }}
         >
           ⭐️
@@ -21,7 +21,7 @@ export default function FavBtn({ id }) {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(favoriteSlice.actions.addPokemon({ id }));
+            dispatch(favoriteSlice.actions.addPokemon({ index }));
           }}
         >
           🩶

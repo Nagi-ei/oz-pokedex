@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router';
 import FavBtn from '../components/FavBtn';
+import { useSelector } from 'react-redux';
 
 export default function Detail() {
   const { id } = useParams();
-  const { name, content } = useFetch(id);
+  const pokedex = useSelector((state) => state.pokedex);
+  const pokemon = pokedex.data.find((poke) => poke.index === parseInt(id));
+  console.log(pokedex.data);
   const [isFront, setIsFront] = useState(true);
 
   const handleFlip = () => {
@@ -15,20 +17,14 @@ export default function Detail() {
   return (
     <div>
       <div>
-        <h2>{name}</h2>
-        <FavBtn id={parseInt(id)} />
+        <h2>{pokemon.name}</h2>
+        <FavBtn id={pokemon.index} />
       </div>
-      <p>{content}</p>
+      <p>{pokemon.description}</p>
       {isFront ? (
-        <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-          alt=''
-        />
+        <img src={pokemon.front} alt={`pokedex-id: ${pokemon.index}`} />
       ) : (
-        <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`}
-          alt=''
-        />
+        <img src={pokemon.back} alt={`pokedex-id: ${pokemon.index}`} />
       )}
       <button onClick={handleFlip}>뒤집기</button>
     </div>
