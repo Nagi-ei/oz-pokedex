@@ -31,9 +31,12 @@ function App() {
 
   return (
     <>
-      <h1>포켓몬 도감</h1>
-      <nav>
-        <ul>
+      <div className='py-7 bg-red-700'></div>
+      <h1 className='text-center text-5xl py-5 bg-black text-white'>
+        포켓몬 도감
+      </h1>
+      <nav className='py-5'>
+        <ul className='flex gap-4 justify-center'>
           <li>
             <Link to='/'>메인페이지</Link>
           </li>
@@ -46,13 +49,14 @@ function App() {
                 type='text'
                 placeholder='검색어를 입력하세요...'
                 ref={inputRef}
+                className='w-56 border-b-2'
               />
               <button type='submit'>🔍</button>
             </form>
           </li>
         </ul>
       </nav>
-      <main>
+      <main className='p-10 bg-zinc-500 min-h-screen'>
         <Routes>
           <Route index element={<Main />} />
           <Route path='/detail/:id' element={<Detail />} />

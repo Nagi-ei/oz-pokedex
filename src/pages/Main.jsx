@@ -18,7 +18,7 @@ export default function Main() {
   }, []);
 
   return (
-    <ul>
+    <ul className='flex flex-wrap gap-4'>
       {pokedex.data.map((poke) => (
         <Card pokemon={poke} key={poke.index} />
       ))}

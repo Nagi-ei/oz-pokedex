@@ -6,9 +6,12 @@ export default function Card({ pokemon }) {
   const navigate = useNavigate();
 
   return (
-    <li onClick={() => navigate(`/detail/${pokemon.index}`)}>
+    <li
+      onClick={() => navigate(`/detail/${pokemon.index}`)}
+      className='border rounded-lg w-40 h-40 flex flex-col justify-center items-center p-7 bg-white cursor-pointer shadow-2xl'
+    >
       <img src={pokemon.front} alt={`pokedex-id: ${pokemon.index}`} />
-      <div>
+      <div className='flex justify-between w-full'>
         <span>{pokemon.name}</span>
         <FavBtn id={pokemon.index} />
       </div>
