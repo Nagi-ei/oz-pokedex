@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPokedex } from './RTK/thunk';
@@ -12,7 +12,7 @@ import './App.css';
 const TOTAL_INDEX_NUMBER = 25;
 
 function App() {
-  const inputRef = useRef('');
+  const [input, setInput] = useState('');
   const navigate = useNavigate();
 
   const pokedex = useSelector((state) => state.pokedex);
@@ -25,8 +25,12 @@ function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/search?pokemons=${inputRef.current.value}`);
+    navigate(`/search?pokemons=${input}`);
     inputRef.current.value = '';
+  };
+
+  const handleRealTime = (e) => {
+    setInput(e.target.value);
   };
 
   return (
@@ -48,8 +52,9 @@ function App() {
               <input
                 type='text'
                 placeholder='검색어를 입력하세요...'
-                ref={inputRef}
+                value={input}
                 className='w-56 border-b-2 outline-none'
+                onChange={handleRealTime}
               />
               <button type='submit'>🔍</button>
             </form>
@@ -69,3 +74,5 @@ function App() {
 }
 
 export default App;
+
+// 앱, 메인 두군데에 데이터 fetching 존재함. 정리할것

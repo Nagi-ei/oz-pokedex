@@ -13,7 +13,7 @@ export default function Card({ pokemon }) {
       <img src={pokemon.front} alt={`pokedex-id: ${pokemon.index}`} />
       <div className='flex justify-between w-full'>
         <span>{pokemon.name}</span>
-        <FavBtn id={pokemon.index} />
+        <FavBtn index={pokemon.index} />
       </div>
     </li>
   );

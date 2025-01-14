@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPokemon } from '../RTK/thunk';
 import FavBtn from '../components/FavBtn';
-import { useSelector } from 'react-redux';
 
 export default function Detail() {
   const { id } = useParams();
-  const pokedex = useSelector((state) => state.pokedex);
-  const pokemon = pokedex.data.find((poke) => poke.index === parseInt(id));
-  console.log(pokedex.data);
   const [isFront, setIsFront] = useState(true);
+  const pokemon = useSelector((state) => state.pokemon.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPokemon(parseInt(id)));
+  }, []);
 
   const handleFlip = () => {
     setIsFront((prev) => !prev);
@@ -20,7 +24,7 @@ export default function Detail() {
         <h2 className='text-3xl font-bold'>
           {pokemon.index}. {pokemon.name}
         </h2>
-        <FavBtn id={pokemon.index} />
+        <FavBtn index={pokemon.index} />
       </div>
       <div className='flex justify-between w-full'>
         <div>{pokemon.category}</div>
