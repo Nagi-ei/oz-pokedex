@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../components/Card';
 import { useSelector } from 'react-redux';
+import Card from '../components/Card';
 
 export default function Main() {
   const pokedex = useSelector((state) => state.pokedex.data);

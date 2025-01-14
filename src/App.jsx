@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchPokedex } from './RTK/thunk';
 import Detail from './pages/Detail';
 import Main from './pages/Main';
@@ -8,8 +8,7 @@ import Search from './pages/Search';
 import Favorite from './pages/Favorite';
 import './App.css';
 
-// const TOTAL_INDEX_NUMBER = 251;
-const TOTAL_INDEX_NUMBER = 25;
+const TOTAL_INDEX_NUMBER = 251;
 
 function App() {
   const [input, setInput] = useState('');
@@ -24,7 +23,6 @@ function App() {
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search?pokemons=${input}`);
-    inputRef.current.value = '';
   };
 
   const handleRealTime = (e) => {
@@ -72,3 +70,7 @@ function App() {
 }
 
 export default App;
+
+// 디테일 페이지 -> 뒤집기
+// 로딩, 에러 상태 만들기
+// 최적화 -> 검색 디바운스, 레이지?

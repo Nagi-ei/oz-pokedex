@@ -38,6 +38,7 @@ export const favoriteSlice = createSlice({
   },
 });
 
+// 더 이상 사용 안함 (학습 용도)
 export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState: {
