@@ -49,7 +49,7 @@ function App() {
                 type='text'
                 placeholder='검색어를 입력하세요...'
                 ref={inputRef}
-                className='w-56 border-b-2'
+                className='w-56 border-b-2 outline-none'
               />
               <button type='submit'>🔍</button>
             </form>
