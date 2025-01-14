@@ -13,14 +13,12 @@ const TOTAL_INDEX_NUMBER = 25;
 
 function App() {
   const [input, setInput] = useState('');
-  const navigate = useNavigate();
-
-  const pokedex = useSelector((state) => state.pokedex);
   const dispatch = useDispatch();
-  console.log(pokedex.data);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchPokedex(TOTAL_INDEX_NUMBER));
+    console.log('api 받아옴');
   }, []);
 
   const handleSearch = (e) => {
@@ -74,5 +72,3 @@ function App() {
 }
 
 export default App;
-
-// 앱, 메인 두군데에 데이터 fetching 존재함. 정리할것
