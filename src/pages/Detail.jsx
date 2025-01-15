@@ -19,14 +19,22 @@ export default function Detail() {
   // 렌더링할때 ? 다니까 나옴. 흠 왜지? -> undefined 상태로 렌더링하고나서 리렌더링된건가
   // 그럼 로딩 상태 추가하면 가능?
   // 아! 렌더링 먼저 삭 -> api 받아오기 성공 -> 다시 렌더링
-  const pokedex = useSelector((state) => state.pokedex.data);
-  const pokemon = pokedex.find((poke) => poke.index === parseInt(id));
+  const pokedex = useSelector((state) => state.pokedex);
+  const pokemon = pokedex.data.find((poke) => poke.index === parseInt(id));
 
   console.log('디테일 렌더링');
 
   const handleFlip = () => {
     setIsFront((prev) => !prev);
   };
+
+  if (pokedex.loading) {
+    return (
+      <div className='bg-white rounded-xl border p-12 h-3/4 flex flex-col justify-center items-center gap-4 shadow-2xl'>
+        loading...
+      </div>
+    );
+  }
 
   return (
     <div className='bg-white rounded-xl border p-12 h-3/4 flex flex-col justify-center items-center gap-4 shadow-2xl'>

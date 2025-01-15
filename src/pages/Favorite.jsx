@@ -4,8 +4,12 @@ import Card from '../components/Card';
 
 export default function Favorite() {
   const fav = useSelector((state) => state.favorite);
-  const pokedex = useSelector((state) => state.pokedex.data);
-  const favDex = pokedex.filter((poke) => fav.includes(poke.index));
+  const pokedex = useSelector((state) => state.pokedex);
+  const favDex = pokedex.data.filter((poke) => fav.includes(poke.index));
+
+  if (pokedex.loading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <ul className='flex flex-wrap gap-4'>

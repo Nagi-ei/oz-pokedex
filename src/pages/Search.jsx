@@ -6,12 +6,16 @@ import Card from '../components/Card';
 
 export default function Search() {
   const [searchParams] = useSearchParams();
-  const pokedex = useSelector((state) => state.pokedex.data);
+  const pokedex = useSelector((state) => state.pokedex);
   const reg = getRegExp(searchParams.get('pokemons'));
+
+  if (pokedex.loading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <ul className='flex flex-wrap gap-4'>
-      {pokedex
+      {pokedex.data
         .filter((poke) => poke.name.match(reg))
         .map((match) => (
           <Card pokemon={match} key={match.index} />

@@ -5,6 +5,6 @@ export const store = configureStore({
   reducer: {
     pokedex: pokedexSlice.reducer,
     favorite: favoriteSlice.reducer,
-    pokemon: pokemonSlice.reducer,
+    pokemon: pokemonSlice.reducer, // 더 이상 사용 안함 (학습 용도)
   },
 });

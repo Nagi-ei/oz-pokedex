@@ -27,6 +27,7 @@ function App() {
 
   const handleRealTime = (e) => {
     setInput(e.target.value);
+    navigate(`/search?pokemons=${e.target.value}`);
   };
 
   return (
