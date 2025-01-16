@@ -32,8 +32,7 @@ function App() {
 
   return (
     <>
-      <div className='py-7 bg-red-700'></div>
-      <h1 className='text-center text-5xl py-5 bg-black text-white'>
+      <h1 className='text-center text-5xl py-5 bg-black text-white border-t-[60px] border-red-700'>
         포켓몬 도감
       </h1>
       <nav className='py-5'>
