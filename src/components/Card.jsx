@@ -1,20 +1,31 @@
 // import React from 'react';
+import { useState, memo } from 'react';
 import { useNavigate } from 'react-router';
 import FavBtn from './FavBtn';
 
-export default function Card({ pokemon }) {
+export const Card = memo(({ pokemon }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   return (
     <li
       onClick={() => navigate(`/detail/${pokemon.index}`)}
-      className='border rounded-lg w-40 h-40 flex flex-col justify-center items-center p-7 bg-white cursor-pointer shadow-2xl hover:scale-110 transition-all duration-100 ease-in'
+      className='flex flex-col items-center justify-center w-40 h-40 transition-all duration-100 ease-in bg-white border-b-4 border-r-4 border-black rounded-lg shadow-2xl cursor-pointer p-7 hover:scale-110'
     >
-      <img src={pokemon.front} alt={`pokedex-id: ${pokemon.index}`} />
+      {isLoading ? (
+        <div className='flex items-center justify-center w-24 h-24'>
+          로딩중...
+        </div>
+      ) : null}
+      <img
+        onLoad={() => setIsLoading(false)}
+        src={pokemon.front}
+        alt={`pokedex-id: ${pokemon.index}`}
+      />
       <div className='flex justify-between w-full'>
         <span>{pokemon.name}</span>
         <FavBtn index={pokemon.index} />
       </div>
     </li>
   );
-}
+});

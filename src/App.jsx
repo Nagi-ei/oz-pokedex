@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { fetchPokedex } from './RTK/thunk';
-import Detail from './pages/Detail';
-import Main from './pages/Main';
-import Search from './pages/Search';
-import Favorite from './pages/Favorite';
-import './App.css';
+
+const Main = lazy(() => import('./pages/Main'));
+const Detail = lazy(() => import('./pages//Detail'));
+const Search = lazy(() => import('./pages/Search'));
+const Favorite = lazy(() => import('./pages/Favorite'));
 
 const TOTAL_INDEX_NUMBER = 251;
 
@@ -35,8 +35,8 @@ function App() {
       <h1 className='text-center text-5xl py-5 bg-black text-white border-t-[60px] border-red-700'>
         포켓몬 도감
       </h1>
-      <nav className='py-5'>
-        <ul className='flex gap-4 justify-center'>
+      <nav className='py-5 border-b-4 border-black'>
+        <ul className='flex justify-center gap-4'>
           <li>
             <Link to='/'>메인페이지</Link>
           </li>
@@ -57,13 +57,15 @@ function App() {
           </li>
         </ul>
       </nav>
-      <main className='p-10 bg-zinc-500 min-h-screen'>
-        <Routes>
-          <Route index element={<Main />} />
-          <Route path='/detail/:id' element={<Detail />} />
-          <Route path='/favorite' element={<Favorite />} />
-          <Route path='/search' element={<Search />} />
-        </Routes>
+      <main className='min-h-screen p-10 bg-zinc-500'>
+        <Suspense fallback={<div className='text-center'>로딩중...</div>}>
+          <Routes>
+            <Route index element={<Main />} />
+            <Route path='/detail/:id' element={<Detail />} />
+            <Route path='/favorite' element={<Favorite />} />
+            <Route path='/search' element={<Search />} />
+          </Routes>
+        </Suspense>
       </main>
     </>
   );
